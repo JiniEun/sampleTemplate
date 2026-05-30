@@ -25,28 +25,12 @@ if ! command -v git &> /dev/null; then
   exit 1
 fi
 
-# ── 2. deploy.yml → .github/workflows/ 위치 확인 ──────────────
-if [ -f "deploy.yml" ] && [ ! -f ".github/workflows/deploy.yml" ]; then
-  echo -e "${YELLOW}[자동 설정] deploy.yml 을 .github/workflows/ 위치로 이동합니다.${NC}"
-  mkdir -p .github/workflows
-  mv deploy.yml .github/workflows/deploy.yml
-  echo -e "${GREEN}  완료.${NC}"
-  echo ""
-fi
-
-# deploy.yml 자체가 없는 경우 안내
-if [ ! -f ".github/workflows/deploy.yml" ]; then
-  echo -e "${RED}[오류] .github/workflows/deploy.yml 파일을 찾을 수 없습니다.${NC}"
-  echo "  배포 설정 파일이 필요합니다. docs/deploy.md 가이드를 참고하세요."
-  exit 1
-fi
-
-# ── 3. .gitignore 생성 (없는 경우) ────────────────────────────
+# ── 2. .gitignore 생성 (없는 경우) ────────────────────────────
 if [ ! -f ".gitignore" ]; then
   printf ".DS_Store\nThumbs.db\n*.log\n" > .gitignore
 fi
 
-# ── 4. git 초기화 ─────────────────────────────────────────────
+# ── 3. git 초기화 ─────────────────────────────────────────────
 if [ ! -d ".git" ]; then
   echo -e "${YELLOW}[안내] git 저장소를 처음 설정합니다.${NC}"
   git init
@@ -55,7 +39,7 @@ if [ ! -d ".git" ]; then
   echo ""
 fi
 
-# ── 5. 원격 저장소 연결 확인 ──────────────────────────────────
+# ── 4. 원격 저장소 연결 확인 ──────────────────────────────────
 REMOTE_URL=$(git remote get-url origin 2>/dev/null || echo "")
 
 if [ -z "$REMOTE_URL" ]; then
@@ -78,7 +62,7 @@ if [ -z "$REMOTE_URL" ]; then
   echo ""
 fi
 
-# ── 6. 변경된 파일 확인 ───────────────────────────────────────
+# ── 5. 변경된 파일 확인 ───────────────────────────────────────
 UNTRACKED=$(git ls-files --others --exclude-standard)
 MODIFIED=$(git diff --name-only)
 STAGED=$(git diff --staged --name-only)
@@ -90,13 +74,13 @@ if [ -z "$UNTRACKED" ] && [ -z "$MODIFIED" ] && [ -z "$STAGED" ]; then
   exit 0
 fi
 
-# ── 7. 커밋 메시지 입력 ───────────────────────────────────────
+# ── 6. 커밋 메시지 입력 ───────────────────────────────────────
 echo "어떤 내용을 수정했나요? (Enter 시 기본 메시지 사용)"
 read -p "  메시지 입력: " COMMIT_MSG
 COMMIT_MSG="${COMMIT_MSG:-포트폴리오 업데이트}"
 echo ""
 
-# ── 8. 스테이징 → 커밋 → 푸시 ────────────────────────────────
+# ── 7. 스테이징 → 커밋 → 푸시 ────────────────────────────────
 git add .
 git commit -m "$COMMIT_MSG"
 
