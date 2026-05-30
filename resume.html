@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume | jmlab.log</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* PDF 버튼 */
+    .pdf-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; font-weight: 700; font-family: var(--font);
+      color: var(--text-2); background: transparent;
+      border: .5px solid var(--border); padding: 4px 12px;
+      border-radius: var(--pill); cursor: pointer;
+      transition: color .15s, border-color .15s, background .15s;
+    }
+    .pdf-btn:hover { color: var(--accent); border-color: var(--accent-soft); background: var(--accent-light); }
+    .pdf-btn svg { width: 13px; height: 13px; }
+
+    /* CONTACT */
+    .contact-row { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; color: var(--text-2); text-decoration: none; transition: color .15s;
+    }
+    .contact-link:hover { color: var(--accent); }
+    .contact-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* LIST ITEMS (education, career) */
+    .list-item { padding: 10px 0; border-top: .5px solid var(--border-s); }
+    .list-item:first-child { border-top: none; padding-top: 0; }
+    .item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; margin-bottom: 3px; }
+    .item-title  { font-size: var(--fs); font-weight: 700; }
+    .item-meta   { font-size: 12px; color: var(--accent); }
+    .item-sub    { font-size: 13px; color: var(--text-2); }
+    .item-period {
+      font-size: 11.5px; color: var(--text-2); background: var(--bg-2);
+      border: .5px solid var(--border); padding: 2px 9px;
+      border-radius: var(--pill); white-space: nowrap; flex-shrink: 0;
+    }
+    .item-desc { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-top: 5px; }
+    .item-link { font-size: 12px; color: var(--accent); text-decoration: none; }
+    .item-link:hover { text-decoration: underline; }
+
+    /* EXPERIENCE */
+    .exp-item { margin-bottom: 2rem; }
+    .exp-item:last-child { margin-bottom: 0; }
+    .exp-org  { font-size: 12px; color: var(--accent); margin-bottom: 7px; }
+    .exp-desc { font-size: 13px; color: var(--text-2); line-height: 1.75; margin-bottom: 8px; }
+    .exp-list { list-style: none; }
+    .exp-list li { font-size: 13px; color: var(--text-2); line-height: 1.7; padding: 2px 0 2px 16px; position: relative; }
+    .exp-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 5px; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .divider { height: .5px; background: var(--border-s); margin: .5rem 0 2rem; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1.1rem; }
+    .skill-group-name { font-size: 12px; font-weight: 700; margin-bottom: 7px; }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+    .skill-pill { font-size: 11.5px; background: var(--bg-2); color: var(--text-2); border: .5px solid var(--border); padding: 3px 9px; border-radius: var(--pill); }
+
+    /* PUBLICATIONS */
+    .pub-item { border-top: .5px solid var(--border-s); padding: 10px 0; }
+    .pub-item:first-child { border-top: none; padding-top: 0; }
+    .pub-title   { font-size: 13.5px; font-weight: 700; line-height: 1.5; margin-bottom: 4px; }
+    .pub-journal { font-size: 12.5px; color: var(--text-2); margin-bottom: 5px; }
+    .pub-row     { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .pub-badge   { display: inline-block; font-size: 10.5px; font-weight: 700; background: var(--accent-light); color: var(--accent); border: .5px solid var(--accent-soft); padding: 2px 8px; border-radius: var(--radius); }
+    .pub-link    { font-size: 12px; color: var(--accent); text-decoration: none; }
+    .pub-link:hover { text-decoration: underline; }
+
+    /* PATENTS */
+    .patent-item { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; padding: 10px 0; border-top: .5px solid var(--border-s); font-size: 13px; }
+    .patent-item:first-child { border-top: none; padding-top: 0; }
+    .patent-title { color: var(--text-1); line-height: 1.5; flex: 1; }
+    .patent-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+    .patent-num   { font-size: 11px; color: var(--text-3); }
+    .status-badge { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: var(--pill); }
+    .s-등록 { background: #E8F5EA; color: #2E7D32; border: .5px solid #A5D6A7; }
+    .s-출원 { background: var(--accent-light); color: var(--accent); border: .5px solid var(--accent-soft); }
+    html[data-theme="dark"] .s-등록 { background: #0D2010; color: #81C784; border-color: #2E5030; }
+
+    .section-label { margin-bottom: 1.1rem; }
+
+    @media (max-width: 560px) {
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media print {
+      .pdf-btn, .nav-links { display: none !important; }
+      body { line-height: 1.55; }
+      .section { margin-bottom: 1rem; }
+      .section-label { margin-bottom: 0.65rem; }
+      .list-item { padding: 6px 0; }
+      .item-desc { margin-top: 3px; }
+      .exp-item { margin-bottom: 1.1rem; }
+      .exp-item, .pub-item, .patent-item { page-break-inside: avoid; }
+      .divider { margin: 0.15rem 0 1.1rem; }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      nav { margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: .5px solid #ccc; }
+      a::after { content: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="page" id="app"></div>
+<script src="./main.js"></script>
+<script>
+function savePdf(){
+  const prev = document.title;
+  document.title = '박지민_resume';
+  window.print();
+  document.title = prev;
+}
+
+function render(d){
+  applyTheme(d.theme);
+  const r = d.resume;
+
+  const eduHTML = r.education.map(e => `
+    <div class="list-item">
+      <div class="item-header">
+        <span class="item-title">${esc(e.degree)}</span>
+        <span class="item-period">${esc(e.year)}</span>
+      </div>
+      <div class="item-sub">
+        ${e.link ? `<a class="item-link" href="${esc(e.link)}" target="_blank" rel="noopener">${esc(e.school)}</a>` : esc(e.school)}
+      </div>
+    </div>`).join('');
+
+  const careerHTML = r.career.map(c => `
+    <div class="list-item">
+      <div class="item-header">
+        <span class="item-title">${esc(c.org)}</span>
+        <span class="item-period">${esc(c.period)}</span>
+      </div>
+      <div class="item-meta">${esc(c.team)} · ${esc(c.role)}</div>
+      <div class="item-desc">${esc(c.desc)}</div>
+    </div>`).join('');
+
+  const expHTML = r.experience.map((e,i) => `
+    ${i>0 ? '<div class="divider"></div>' : ''}
+    <div class="exp-item">
+      <div class="item-header">
+        <span class="item-title">${esc(e.title)}</span>
+        <span class="item-period">${esc(e.period)}</span>
+      </div>
+      <div class="exp-org">${esc(e.org)}</div>
+      <div class="exp-desc">${esc(e.desc)}</div>
+      <ul class="exp-list">${e.bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul>
+      <div class="exp-tags">${e.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+    </div>`).join('');
+
+  const skillHTML = r.skills.map(s => `
+    <div>
+      <div class="skill-group-name">${esc(s.group)}</div>
+      <div class="skill-pills">${s.items.map(i=>`<span class="skill-pill">${esc(i)}</span>`).join('')}</div>
+    </div>`).join('');
+
+  const pubHTML = r.publications.map(p => `
+    <div class="pub-item">
+      <div class="pub-title">${esc(p.title)}</div>
+      <div class="pub-journal">${esc(p.journal)}</div>
+      <div class="pub-row">
+        <span class="pub-badge">${esc(p.badge)}</span>
+        ${p.link ? `<a class="pub-link" href="${esc(p.link)}" target="_blank" rel="noopener">${SVG.ext} DOI</a>` : ''}
+      </div>
+    </div>`).join('');
+
+  const patentHTML = r.patents.map(p => `
+    <div class="patent-item">
+      <span class="patent-title">${esc(p.title)}</span>
+      <div class="patent-right">
+        <span class="patent-num">${esc(p.number)}</span>
+        <span class="status-badge s-${esc(p.status)}">${esc(p.status)}</span>
+      </div>
+    </div>`).join('');
+
+  const pdfBtn = `<button class="pdf-btn" onclick="savePdf()" aria-label="PDF 저장">${SVG.pdf} PDF 저장</button>`;
+
+  document.getElementById('app').innerHTML = `
+    ${navHTML(d.meta.siteName, 'Resume', pdfBtn)}
+
+    <section class="section">
+      <div class="section-label">Contact</div>
+      <div class="contact-row">
+        <a class="contact-link" href="mailto:${esc(r.contact.email)}">${SVG.mail} ${esc(r.contact.email)}</a>
+        <a class="contact-link" href="${esc(r.contact.notion)}" target="_blank" rel="noopener">${SVG.notion} Notion</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Education</div>
+      ${eduHTML}
+    </section>
+
+    <section class="section">
+      <div class="section-label">Career</div>
+      ${careerHTML}
+    </section>
+
+    <section class="section">
+      <div class="section-label">Experience</div>
+      ${expHTML}
+    </section>
+
+    <section class="section">
+      <div class="section-label">Skills</div>
+      <div class="skills-grid">${skillHTML}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Publications</div>
+      ${pubHTML}
+    </section>
+
+    <section class="section">
+      <div class="section-label">Patents</div>
+      ${patentHTML}
+    </section>
+  `;
+}
+
+fetchData(render);
+</script>
+</body>
+</html>

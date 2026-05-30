@@ -1,0 +1,87 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent:       #2361b0;
+  --accent-light: #EAF1FB;
+  --accent-soft:  #B8D0EE;
+  --text-1:       #111111;
+  --text-2:       #505050;
+  --text-3:       #888888;
+  --bg:           #fdfdfd;
+  --bg-2:         #F4F4F2;
+  --border:       rgba(0,0,0,0.09);
+  --border-s:     rgba(0,0,0,0.05);
+  --font:         'Malgun Gothic','맑은 고딕',-apple-system,sans-serif;
+  --fs:           14px;
+  --radius:       8px;
+  --pill:         99px;
+  --max-w:        760px;
+}
+html[data-theme="dark"] {
+  --accent:       #6BA4D8;
+  --accent-light: #0D1E2E;
+  --accent-soft:  #1C3A54;
+  --text-1:       #EEEEEE;
+  --text-2:       #AAAAAA;
+  --text-3:       #666666;
+  --bg:           #141414;
+  --bg-2:         #1E1E1E;
+  --border:       rgba(255,255,255,0.10);
+  --border-s:     rgba(255,255,255,0.05);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  font-size: var(--fs);
+  line-height: 1.75;
+  color: var(--text-1);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  transition: background .2s, color .2s;
+}
+.page { max-width: var(--max-w); margin: 0 auto; padding: 2.5rem 1.5rem 6rem; }
+
+/* NAV */
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 3rem; padding-bottom: 1.25rem;
+  border-bottom: .5px solid var(--border);
+}
+.nav-brand { font-size: 13px; font-weight: 700; color: var(--text-3); letter-spacing: .1em; text-decoration: none; }
+.nav-links  { display: flex; align-items: center; gap: 1.5rem; }
+.nav-links a { font-size: 13px; color: var(--text-2); text-decoration: none; transition: color .15s; }
+.nav-links a:hover, .nav-links a.active { color: var(--accent); font-weight: 700; }
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; background: transparent;
+  border: .5px solid var(--border); border-radius: var(--pill);
+  cursor: pointer; color: var(--text-2); font-family: var(--font);
+  transition: color .15s, border-color .15s, background .15s;
+}
+.icon-btn:hover { color: var(--accent); border-color: var(--accent-soft); background: var(--accent-light); }
+.icon-btn svg { width: 14px; height: 14px; }
+
+/* SECTION */
+.section { margin-bottom: 2.75rem; }
+.section-label {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 10px; font-weight: 700; letter-spacing: .14em;
+  color: var(--accent); text-transform: uppercase; margin-bottom: 1.25rem;
+}
+.section-label::after { content: ''; flex: 1; height: .5px; background: var(--accent-soft); }
+
+/* TAG (공통 — resume, portfolio) */
+.tag {
+  font-size: 11px; color: var(--text-2); background: var(--bg-2);
+  border: .5px solid var(--border); padding: 3px 9px; border-radius: var(--radius);
+}
+
+@media (max-width: 560px) {
+  nav { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .icon-btn { display: none !important; }
+  body { font-size: 11pt; background: #fff; color: #111; }
+  .page { padding: 0; max-width: 100%; }
+  @page { size: A4; margin: 18mm 20mm; }
+}

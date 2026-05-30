@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "siteName": "jmlab.log"
+  },
+  "theme": {
+    "mainColor":    "#fdfdfd",
+    "accentColor":  "#2361b0",
+    "accentLight":  "#EAF1FB",
+    "accentSoft":   "#B8D0EE",
+    "font":         "'맑은 고딕', 'Malgun Gothic', -apple-system, sans-serif",
+    "fontSize":     "14px"
+  },
+  "profile": {
+    "name":     "박지민",
+    "initials": "박지",
+    "title":    "의생명공학 연구원",
+    "tagline":  "나노바이오 플랫폼과 체외진단 기술을 연구하는 의생명공학자 · 미세유체역학 기반 POC 진단 시스템 전문"
+  },
+
+  "home": {
+    "introduction": "나노입자 기반 바이오센서 설계부터 미세유체 칩 제작, 임상 검체 검증까지 체외진단(IVD) 플랫폼의 전 주기를 연구해왔습니다.\n\n산학협력 과제와 기업 공동 연구를 통해 실험실 성과를 실용 가능한 기술로 전환하는 경험을 쌓았으며, 정밀의료 실현을 위한 빠르고 정확한 현장 진단 시스템 개발을 지향합니다.",
+    "figures": [
+      {
+        "src":     "./images/figures/fig1.png",
+        "caption": "SERS 기질 SEM 이미지 (AuNP 클러스터, ×50,000)"
+      },
+      {
+        "src":     "./images/figures/fig2.png",
+        "caption": "미세유체 칩 설계 모식도 (PDMS, 4채널)"
+      },
+      {
+        "src":     "./images/figures/fig3.png",
+        "caption": "PCT·IL-6 멀티플렉스 SERS 스펙트럼 결과"
+      }
+    ],
+    "projects": [
+      {
+        "title": "SERS 나노센서 기반 패혈증 조기진단 플랫폼",
+        "desc":  "AuNP 클러스터 기질과 마이크로플루이딕스를 결합한 POC 플랫폼. LOD 0.1 pg/mL 달성.",
+        "link":  "./portfolio.html#sers-sepsis"
+      },
+      {
+        "title": "양자점 기반 호흡기 바이러스 신속 진단 키트",
+        "desc":  "형광 QD 리포터 적용 LFA로 Flu A/B·SARS-CoV-2 삼중 동시 검출.",
+        "link":  "./portfolio.html#qd-lfa"
+      },
+      {
+        "title": "CTC 포획용 하이브리드 마이크로필터 칩",
+        "desc":  "크기 여과 + EpCAM 항체 포획 결합. MCF-7 포획 효율 89.3%.",
+        "link":  "./portfolio.html#ctc-chip"
+      }
+    ]
+  },
+
+  "resume": {
+    "contact": {
+      "email":  "jimin.park@bmelab.kr",
+      "notion": "https://notion.so/jimin-park"
+    },
+    "education": [
+      {
+        "degree": "공학박사 — 의생명공학",
+        "school": "KAIST 바이오및뇌공학과",
+        "year":   "2021",
+        "link":   "https://bi.kaist.ac.kr"
+      },
+      {
+        "degree": "공학석사 — 바이오공학",
+        "school": "KAIST 바이오및뇌공학과",
+        "year":   "2017",
+        "link":   "https://bi.kaist.ac.kr"
+      },
+      {
+        "degree": "공학사 — 화학생물공학",
+        "school": "성균관대학교 공과대학",
+        "year":   "2015",
+        "link":   ""
+      }
+    ],
+    "career": [
+      {
+        "org":    "한국생명공학연구원 (KRIBB) 의생명측정연구센터",
+        "team":   "나노바이오진단팀",
+        "role":   "선임연구원",
+        "period": "2021.03 — 재직 중",
+        "desc":   "나노입자 합성, 마이크로플루이딕스 칩 제작, SERS·형광 신호 분석을 통합한 POC 진단 플랫폼 개발."
+      }
+    ],
+    "experience": [
+      {
+        "title":  "SERS 나노센서 기반 패혈증 조기진단 플랫폼 개발",
+        "period": "2023.06 — 진행 중",
+        "org":    "과학기술정보통신부 / 바이오의료기술개발사업",
+        "desc":   "금 나노입자(AuNP) 기반 SERS 기질과 미세유체 칩을 결합하여 혈청 내 패혈증 바이오마커(PCT·IL-6)를 30분 이내 동시 정량 검출하는 POC 플랫폼 개발.",
+        "bullets": [
+          "AuNP 클러스터 SERS 기질 최적화로 Procalcitonin LOD 0.1 pg/mL 달성 (ELISA 대비 100배 향상)",
+          "PDMS 미세유체 칩 설계·제작 및 샘플 전처리 모듈 통합으로 혈청 직접 주입 구현",
+          "PCT·IL-6 멀티플렉스 동시 검출 신호 분리 알고리즘 개발 (Python, scikit-learn)",
+          "서울대병원 응급의학과와 협력하여 임상 혈청 샘플 87례 검증, 민감도 94.2% / 특이도 96.1%"
+        ],
+        "tags": ["SERS", "나노입자", "POC 진단", "패혈증", "미세유체역학"]
+      },
+      {
+        "title":  "호흡기 바이러스 신속 진단을 위한 측방유동 면역분석 개선",
+        "period": "2022.01 — 2023.05",
+        "org":    "보건복지부 감염병대응기술개발사업 (공동 연구원)",
+        "desc":   "기존 LFA(Lateral Flow Assay) 키트의 낮은 감도를 형광 양자점(QD) 리포터로 대체하여 인플루엔자 A/B 및 SARS-CoV-2 삼중 동시 검출 정확도를 획기적으로 개선.",
+        "bullets": [
+          "CdSe/ZnS 양자점 항체 접합 최적화로 기존 콜로이달 금 대비 형광 신호 35배 증폭",
+          "휴대용 형광 리더기 광학계 설계 및 신호 정규화 펌웨어 개발 (LabVIEW)",
+          "3개 바이러스 항원 동시 검출 LOD: Flu A 10³ copies/mL, Flu B 10³·SARS-CoV-2 10² copies/mL",
+          "식품의약품안전처 체외진단의료기기 허가 자료 작성 기여"
+        ],
+        "tags": ["LFA", "양자점", "호흡기 바이러스", "형광 검출", "인허가"]
+      },
+      {
+        "title":  "혈중 암세포(CTC) 포획용 마이크로필터 칩 설계 및 평가",
+        "period": "2021.04 — 2021.12",
+        "org":    "KRIBB 내부 기초연구과제",
+        "desc":   "액체생검(Liquid Biopsy) 응용을 위해 크기 기반 여과와 표면 항체 포획을 결합한 하이브리드 마이크로필터 칩을 설계하고 유방암 세포주로 성능을 검증.",
+        "bullets": [
+          "SU-8 포토리소그래피 공정으로 기공 직경 8 µm 마이크로필터 제작",
+          "EpCAM 항체 기능화 표면 처리로 MCF-7 포획 효율 89.3% 달성",
+          "COMSOL Multiphysics 유체 시뮬레이션으로 전단응력 최소화 채널 형상 최적화",
+          "결과물 기반 국내 특허 1건 등록 (제10-2023-XXXXXX호)"
+        ],
+        "tags": ["액체생검", "CTC", "포토리소그래피", "COMSOL", "특허"]
+      }
+    ],
+    "skills": [
+      { "group": "실험 & 제작",  "items": ["나노입자 합성", "PDMS 미세유체 칩", "포토리소그래피", "ELISA / WB", "클린룸 공정"] },
+      { "group": "분석 장비",    "items": ["Raman 분광기", "SEM/TEM", "Flow cytometry", "형광 현미경", "COMSOL"] },
+      { "group": "소프트웨어",   "items": ["Python", "MATLAB", "LabVIEW", "R", "AutoCAD (칩 설계)"] },
+      { "group": "언어",         "items": ["한국어 (모국어)", "영어 (업무 가능)", "학술 영작"] }
+    ],
+    "publications": [
+      {
+        "title":   "Multiplexed SERS detection of sepsis biomarkers using gold nanoparticle cluster substrates integrated with a microfluidic chip",
+        "journal": "ACS Nano, 2024",
+        "badge":   "SCI(E) 1저자",
+        "link":    "https://doi.org/10.1021/acsnano.XXXXXXX"
+      },
+      {
+        "title":   "Quantum dot-enhanced lateral flow assay for simultaneous detection of influenza A/B and SARS-CoV-2",
+        "journal": "Biosensors and Bioelectronics, 2023",
+        "badge":   "SCI(E) 1저자",
+        "link":    "https://doi.org/10.1016/j.bios.XXXXXXX"
+      },
+      {
+        "title":   "Hybrid microfilter chip combining size-based filtration and antibody capture for circulating tumor cell isolation",
+        "journal": "Lab on a Chip, 2022",
+        "badge":   "SCI(E) 1저자",
+        "link":    "https://doi.org/10.1039/XXXXXXX"
+      },
+      {
+        "title":   "Surface functionalization strategies for improving sensitivity of nanoparticle-based biosensors: a review",
+        "journal": "Advanced Healthcare Materials, 2023",
+        "badge":   "SCI(E) 공저",
+        "link":    ""
+      }
+    ],
+    "patents": [
+      { "title": "나노입자 기반 SERS 기질 및 이를 이용한 바이오마커 다중 검출 방법",   "number": "KR 10-2024-XXXXXX", "status": "출원" },
+      { "title": "항체 기능화 마이크로필터를 이용한 혈중 순환종양세포 분리 장치",       "number": "KR 10-2023-XXXXXX", "status": "등록" },
+      { "title": "형광 양자점 접합 신속 진단 키트 및 이의 제조 방법",                   "number": "KR 10-2022-XXXXXX", "status": "등록" }
+    ]
+  },
+
+  "portfolio": {
+    "projects": [
+      {
+        "id":      "sers-sepsis",
+        "title":   "SERS 나노센서 기반 패혈증 조기진단 플랫폼",
+        "period":  "2023.06 — 진행 중",
+        "org":     "과학기술정보통신부 / 바이오의료기술개발사업",
+        "desc":    "금 나노입자(AuNP) 기반 SERS 기질과 미세유체 칩을 결합하여 혈청 내 패혈증 바이오마커(PCT·IL-6)를 30분 이내 동시 정량 검출하는 POC 플랫폼 개발. Procalcitonin LOD 0.1 pg/mL 달성(ELISA 대비 100배 향상), 임상 87례 검증 완료.",
+        "image":   "./images/projects/sers-sepsis.png",
+        "tags":    ["SERS", "나노입자", "POC 진단", "패혈증", "미세유체역학"]
+      },
+      {
+        "id":      "qd-lfa",
+        "title":   "양자점 기반 호흡기 바이러스 신속 진단 키트",
+        "period":  "2022.01 — 2023.05",
+        "org":     "보건복지부 감염병대응기술개발사업",
+        "desc":    "CdSe/ZnS 양자점 항체 접합으로 기존 콜로이달 금 대비 형광 신호 35배 증폭. Flu A/B·SARS-CoV-2 삼중 동시 검출 구현 및 식약처 체외진단의료기기 허가 자료 기여.",
+        "image":   "./images/projects/qd-lfa.png",
+        "tags":    ["LFA", "양자점", "호흡기 바이러스", "형광 검출", "인허가"]
+      },
+      {
+        "id":      "ctc-chip",
+        "title":   "CTC 포획용 하이브리드 마이크로필터 칩",
+        "period":  "2021.04 — 2021.12",
+        "org":     "KRIBB 내부 기초연구과제",
+        "desc":    "크기 기반 여과(8 µm 기공)와 EpCAM 항체 포획을 결합한 하이브리드 칩. COMSOL 유체 시뮬레이션으로 전단응력 최소화, MCF-7 포획 효율 89.3% 달성. 국내 특허 등록.",
+        "image":   "./images/projects/ctc-chip.png",
+        "tags":    ["액체생검", "CTC", "포토리소그래피", "COMSOL", "특허"]
+      }
+    ]
+  }
+}

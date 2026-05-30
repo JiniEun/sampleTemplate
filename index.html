@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | jmlab.log</title>
+  <meta name="description" content="박지민 의생명공학 연구원 포트폴리오 — 나노바이오 플랫폼 · POC 진단 · 미세유체역학" />
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* HERO */
+    .hero { display: grid; grid-template-columns: 84px 1fr; gap: 1.75rem; align-items: start; margin-bottom: 3rem; }
+    .avatar {
+      width: 84px; height: 84px; border-radius: 50%;
+      background: var(--accent-light); border: .5px solid var(--accent-soft);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: 700; color: var(--accent); flex-shrink: 0;
+    }
+    .hero-name  { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+    .hero-role  { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: .05em; margin-bottom: 8px; }
+    .hero-desc  { font-size: 13px; color: var(--text-2); line-height: 1.7; }
+
+    /* INTRODUCTION */
+    .intro-text { font-size: var(--fs); color: var(--text-2); line-height: 1.85; }
+    .intro-text p + p { margin-top: .75rem; }
+
+    /* FIGURES */
+    .figures-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .figure-card { border: .5px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg-2); }
+    .figure-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .figure-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--accent-light);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 6px; color: var(--accent); font-size: 12px;
+      text-align: center; padding: 0 14px;
+    }
+    .figure-placeholder svg { width: 28px; height: 28px; opacity: .5; }
+    .figure-caption { font-size: 12px; color: var(--text-2); padding: 8px 10px; line-height: 1.5; }
+
+    /* PROJECTS */
+    .project-list { display: flex; flex-direction: column; }
+    .project-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      flex-wrap: wrap; gap: 8px; padding: 12px 0; border-top: .5px solid var(--border-s);
+    }
+    .project-item:first-child { border-top: none; padding-top: 0; }
+    .project-body { flex: 1; }
+    .project-title { font-size: var(--fs); font-weight: 700; margin-bottom: 3px; }
+    .project-desc  { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 12px; color: var(--accent); text-decoration: none; white-space: nowrap; flex-shrink: 0;
+    }
+    .project-link:hover { text-decoration: underline; }
+    .project-link svg { width: 12px; height: 12px; }
+
+    .section { margin-bottom: 3rem; }
+
+    @media (max-width: 560px) {
+      .hero { grid-template-columns: 1fr; }
+      .avatar { width: 64px; height: 64px; font-size: 20px; }
+      .figures-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page" id="app"></div>
+<script src="./main.js"></script>
+<script>
+function imgError(img, idx){
+  const cap = esc(window._figCaptions[idx]);
+  img.parentElement.innerHTML =
+    `<div class="figure-placeholder">${SVG.img}<span>${cap}</span></div>` +
+    `<div class="figure-caption">${cap}</div>`;
+}
+
+function render(d){
+  applyTheme(d.theme);
+  const h = d.home;
+
+  window._figCaptions = h.figures.map(f => f.caption);
+  const figuresHTML = h.figures.map((f, i) => `
+    <div class="figure-card">
+      <img src="${esc(f.src)}" alt="${esc(f.caption)}" onerror="imgError(this,${i})">
+      <div class="figure-caption">${esc(f.caption)}</div>
+    </div>`).join('');
+
+  const projectsHTML = h.projects.map(p => `
+    <div class="project-item">
+      <div class="project-body">
+        <div class="project-title">${esc(p.title)}</div>
+        <div class="project-desc">${esc(p.desc)}</div>
+      </div>
+      <a class="project-link" href="${esc(p.link)}">${SVG.link} 자세히 보기</a>
+    </div>`).join('');
+
+  const introParas = h.introduction.split('\n\n').map(p=>`<p>${esc(p)}</p>`).join('');
+
+  document.getElementById('app').innerHTML = `
+    ${navHTML(d.meta.siteName, 'Home')}
+
+    <div class="hero">
+      <div class="avatar">${esc(d.profile.initials)}</div>
+      <div>
+        <h1 class="hero-name">${esc(d.profile.name)}</h1>
+        <div class="hero-role">${esc(d.profile.title)}</div>
+        <p class="hero-desc">${esc(d.profile.tagline)}</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-label">Introduction</div>
+      <div class="intro-text">${introParas}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Figures</div>
+      <div class="figures-grid">${figuresHTML}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Projects</div>
+      <div class="project-list">${projectsHTML}</div>
+    </section>
+  `;
+}
+
+fetchData(render);
+</script>
+</body>
+</html>
