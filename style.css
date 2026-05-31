@@ -84,4 +84,18 @@ nav {
   body { font-size: 11pt; background: #fff; color: #111; }
   .page { padding: 0; max-width: 100%; }
   @page { size: A4; margin: 18mm 20mm; }
+
+  /* 다크모드 상태에서 인쇄해도 라이트 모드 색상으로 출력 */
+  html[data-theme="dark"] {
+    --accent:       #2361b0;
+    --accent-light: #EAF1FB;
+    --accent-soft:  #B8D0EE;
+    --text-1:       #111111;
+    --text-2:       #505050;
+    --text-3:       #888888;
+    --bg:           #fdfdfd;
+    --bg-2:         #F4F4F2;
+    --border:       rgba(0,0,0,0.09);
+    --border-s:     rgba(0,0,0,0.05);
+  }
 }
