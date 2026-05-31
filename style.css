@@ -86,6 +86,7 @@ nav {
   @page { size: A4; margin: 18mm 20mm; }
 
   /* 다크모드 상태에서 인쇄해도 라이트 모드 색상으로 출력 */
+  html[data-theme="dark"] .s-등록 { background: #E8F5EA; color: #2E7D32; border-color: #A5D6A7; }
   html[data-theme="dark"] {
     --accent:       #2361b0;
     --accent-light: #EAF1FB;
