@@ -26,13 +26,14 @@ function toggleTheme(){
 }
 
 function applyTheme(t){
-  const r = document.documentElement.style;
-  r.setProperty('--accent',       t.accentColor);
-  r.setProperty('--accent-light', t.accentLight);
-  r.setProperty('--accent-soft',  t.accentSoft);
-  r.setProperty('--bg',           t.mainColor);
-  r.setProperty('--font',         t.font);
-  r.setProperty('--fs',           t.fontSize);
+  let el = document.getElementById('theme-vars');
+  if (!el) {
+    el = document.createElement('style');
+    el.id = 'theme-vars';
+    document.head.appendChild(el);
+  }
+  /* <style> 주입 방식 — inline style과 달리 html[data-theme="dark"] 규칙이 덮어쓸 수 있음 */
+  el.textContent = `:root{--accent:${t.accentColor};--accent-light:${t.accentLight};--accent-soft:${t.accentSoft};--bg:${t.mainColor};--font:${t.font};--fs:${t.fontSize}}`;
 }
 
 /* extra: 테마 버튼 오른쪽에 추가할 HTML (선택) */

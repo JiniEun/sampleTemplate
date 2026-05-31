@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resume | jmlab.log</title>
+  <title>Resume | yelab.log</title>
   <link rel="stylesheet" href="./style.css">
   <style>
     /* PDF 버튼 */
@@ -16,7 +16,7 @@
       transition: color .15s, border-color .15s, background .15s;
     }
     .pdf-btn:hover { color: var(--accent); border-color: var(--accent-soft); background: var(--accent-light); }
-    .pdf-btn svg { width: 13px; height: 13px; }
+    .pdf-btn svg { width: 13px; height: 13px; display: block; flex-shrink: 0; }
 
     /* CONTACT */
     .contact-row { display: flex; flex-wrap: wrap; gap: 1.25rem; }
@@ -108,7 +108,7 @@
 <script>
 function savePdf(){
   const prev = document.title;
-  document.title = '박지민_resume';
+  document.title = '최유은_resume';
   window.print();
   document.title = prev;
 }
